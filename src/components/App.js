@@ -1,28 +1,26 @@
-import React from 'react'
-import '../styles/App.css';
-import { signUpFormValidation } from "./../utils/validation";
+import React, { useState } from "react";
 
+import { signUpFormValidation } from "./../utils/validation";
 const initialState = {
   name: "",
   email: "",
   password: "",
   consent: "off"
 };
-
 const App = () => {
-  const[user, setUser] = userState(initialState);
-  const[result, setResult] = userState({});
-  const consentHandler  = (e) => {
-    setUser({...user, [e.target.id]: e.target.checked});
+  const [user, setUser] = useState(initialState);
+  const [result, setResult] = useState({});
+  const consentHandler = (e) => {
+    setUser({ ...user, [e.target.id]: e.target.checked });
   };
   const changeHandler = (e) => {
-    setUser({...user, [e.target.id]: e.target.value});
-  }
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     setResult(signUpFormValidation(user));
     console.log(result);
-  }
+  };
   return (
     <div>
       <form onSubmit={submitHandler}>
@@ -54,6 +52,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;
